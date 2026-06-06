@@ -1,8 +1,63 @@
-<div style="position: relative; width: 100%; height: 0; padding-top: 177.7778%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAGn5cEqW_I/DitgJmnsdURNZK1NLWi8Lg/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
+<style>
+  /* 1. WRAPPER CONTAINER */
+  /* Constrains the vertical video so it doesn't scale massively on wide desktop screens */
+  .automation-guide-wrapper {
+    max-width: 400px; 
+    margin: 2rem auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* 2. VIDEO EMBED FRAME */
+  .canva-embed-container {
+    position: relative;
+    width: 100%;
+    padding-top: 177.77%; /* Maintains the exact 9:16 Vertical Aspect Ratio */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2); 
+    background-color: #0f172a; /* Clean dark backdrop while the iframe loads */
+    will-change: transform;
+  }
+
+  .canva-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* 3. CAPTION & HYPERLINK STYLING */
+  .guide-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+  }
+
+  .guide-link:hover {
+    color: #3b82f6; /* Illuminates blue on mouse hover */
+  }
+
+  .guide-brand {
+    font-weight: 600;
+    color: #94a3b8;
+  }
+</style>
+
+<div class="automation-guide-wrapper">
+  
+  <div class="canva-embed-container">
+    <iframe loading="lazy" src="https://www.canva.com/design/DAGn5cEqW_I/DitgJmnsdURNZK1NLWi8Lg/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+  </div>
+
+  <a class="guide-link" href="https://www.canva.com/design/DAGn5cEqW_I/DitgJmnsdURNZK1NLWi8Lg/watch?utm_content=DAGn5cEqW_I&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">
+    <span class="guide-brand">MicroBurstMedia</span> | Automation Setup Guide for Beginners
+  </a>
+
 </div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGn5cEqW_I&#x2F;DitgJmnsdURNZK1NLWi8Lg&#x2F;watch?utm_content=DAGn5cEqW_I&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">MicroBurstMedia | Automation Setup Guide for Beginners</a> by MicroBurstMedia
