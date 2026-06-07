@@ -29,102 +29,170 @@
     </script>
 
 <style>
-  /* Import a clean, modern sans-serif font similar to your design */
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+    /* Import a clean, modern sans-serif font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-  /* GLOBAL BODY OVERRIDE: Eliminates the loose white background and centers the app container */
+    /* 1. GLOBAL LAYOUT FRAMEWORK WITH CANVAS OVERLAYS */
     body {
       margin: 0;
       padding: 1rem;
-      background-color: #05070a; /* Matches your design's deep midnight theme exactly */
+      background-color: #05070a; 
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       box-sizing: border-box;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* 1. MASTER CONTAINER */
+    /* LIVING BACKGROUND CONTAINER */
+    .mbm-interlink-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      overflow: hidden;
+      background-color: #05070a;
+    }
+
+    .mbm-interlink-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45; /* Prevents the video loops from overwhelming page text */
+    }
+
+    /* SHADER-INSPIRED GLOW OVERLAY (Mirrors the Three.js pulse/bloom effect) */
+    .mbm-shader-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(16, 185, 129, 0.12) 0%, #05070a 85%);
+      z-index: -1;
+      animation: interlinkPulse 6s infinite ease-in-out;
+    }
+
+    /* Hardware-accelerated glow engine pulsation */
+    @keyframes interlinkPulse {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    /* 2. MASTER APP CARD CONTAINER */
     .mbm-native-card {
-      width: 100%;             /* Fits perfectly inside mobile borders */
-      max-width: 400px;        /* Restricts stretching out on desktop screens */
+      width: 100%;             
+      max-width: 600px;        /* Seamless expandable desktop scaling limits */
       box-sizing: border-box;
-      background: linear-gradient(145deg, #0b101e, #05070a);
-      border: 1px solid #1e293b;
+      background: linear-gradient(145deg, rgba(11, 16, 30, 0.9), rgba(5, 7, 10, 0.95));
+      backdrop-filter: blur(12px); /* Frost overlay allowing background trails to glide behind smoothly */
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(30, 41, 59, 0.8);
       border-radius: 24px;
       padding: 2.5rem 2rem 1.5rem 2rem;
       font-family: 'Inter', sans-serif;
       text-align: center;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.75);
       color: #ffffff;
+      z-index: 10;
     }
 
-  /* 2. RESPONSIVE TOP GRAPHIC CONTAINER */
-  /* Swaps hardcoded pixels for proportional scaling so it expands beautifully on mobile */
-  .mbm-graphic-area {
-    width: 100%;
-    height: auto;               /* Allows the container height to scale with the image */
-    min-height: 220px;          /* Sets a firm baseline height for smaller devices */
-    margin-top: 0.5rem;
-    margin-bottom: 2.5rem;      /* Generous breathing room before hitting the text content */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
-  }
-  
-  .mbm-graphic-area img {
-    width: 85%;                 /* Expands the graphic to occupy a dominant view zone */
-    max-width: 320px;           /* Caps it elegantly so it stays sharp on desktop layouts */
-    height: auto;               /* Maintains the perfect native design proportions */
-    object-fit: contain;
-    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4)); /* Adds a deep 3D float effect */
-  }
+    /* 3. FLUID YOUTUBE ENGINE WRAPPER */
+    .funnel-media-wrap {
+      position: relative;
+      width: 100%;
+      height: auto;               
+      max-height: 240px;          
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      background-color: #05070a;  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .funnel-media-wrap iframe {
+      position: relative;         
+      width: 100%;
+      height: 240px;              
+      max-height: 240px;
+      border: none;
+    }
 
-  /* 3. TYPOGRAPHY & BRANDING */
-  .mbm-brand-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #64748b;
-    font-weight: 600;
-    margin-top: 1rem;
-    margin-bottom: 0.75rem;
-  }
+    /* 4. DESIGN ELEMENT GRAPHIC CONTAINER */
+    .mbm-graphic-area {
+      width: 100%;
+      height: auto;               
+      min-height: 220px;          
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    }
+    
+    .mbm-graphic-area img {
+      width: 85%;                 
+      max-width: 320px;           
+      height: auto;               
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4)); 
+    }
 
-  .mbm-headline {
-    font-size: 2.2rem;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-    letter-spacing: -0.5px;
-  }
+    /* 5. TYPOGRAPHY & CONVERSIONS BRAND LABELING */
+    .mbm-brand-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #64748b;
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.75rem;
+    }
 
-  .mbm-subtext {
-    font-size: 1rem;
-    color: #94a3b8;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
+    .mbm-headline {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
 
-  .mbm-price-tag {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 2rem;
-    color: #f8fafc;
-  }
+    .mbm-subtext {
+      font-size: 1rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
 
-  /* 4. INTERACTIVE BUTTONS WITH CONTROLLED SPACING */
+    .mbm-price-tag {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: #f8fafc;
+    }
+
+    .old-price {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #64748b;
+    }
+
+    /* 6. CONVERSION ACTIONS CAPSULES */
     .mbm-btn-primary {
-      display: flex;             /* Keeps the interior layout solid */
+      display: flex;             
       align-items: center;
       justify-content: center;
       padding: 0.85rem 2rem; 
-      
-      /* THE CAP LOCK FIX: Removes width: 100% and explicitly sizes the element capsule */
       width: 280px;              
-      margin: 0 auto 1.25rem auto; /* Automatically balances the button exactly in the center */
-      
+      margin: 0 auto 1.25rem auto; 
       background: #10b981; 
       color: #ffffff;
       font-weight: 700;
@@ -147,11 +215,8 @@
       align-items: center;
       justify-content: center;
       padding: 0.85rem 2rem; 
-      
-      /* THE CAP LOCK FIX: Matches primary button geometry perfectly */
       width: 280px;
       margin: 0 auto 2.5rem auto; 
-      
       background: transparent;
       color: #ffffff;
       font-weight: 600;
@@ -168,31 +233,36 @@
       border-color: #475569;
     }
 
-  /* 5. TRANSPARENT POLICY FOOTER */
-  .mbm-footer-policy {
-    font-size: 0.7rem;
-    line-height: 1.4;
-    color: #475569; /* Muted slate gray to stay low-profile and non-distracting */
-    border-top: 1px solid rgba(51, 65, 85, 0.4);
-    padding-top: 1rem;
-    letter-spacing: 0.2px;
-  }
+    /* 7. POLICY COMPLIANCE FOOTER */
+    .mbm-footer-policy {
+      font-size: 0.7rem;
+      line-height: 1.4;
+      color: #475569; 
+      border-top: 1px solid rgba(51, 65, 85, 0.4);
+      padding-top: 1rem;
+      letter-spacing: 0.2px;
+    }
 
-  .mbm-footer-policy a {
-    color: #64748b;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
+    .mbm-footer-policy a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
 
-  .mbm-footer-policy a:hover {
-    color: #3b82f6; /* Subtle accent highlight on text links */
-    text-decoration: underline;
-  }
+    .mbm-footer-policy a:hover {
+      color: #3b82f6; 
+      text-decoration: underline;
+    }
+  
 </style>
+</head>
+<body>
+
+  <canvas id="interlinkNodeCanvas" class="mbm-interlink-bg"></canvas>
 
 <div class="mbm-native-card">
 
-<h1 style="text-align: center; margin-top: 5px; margin-bottom: 30px;" id="pop-title" class="pop-headline">Want to Learn How You Can Generate Income from Your Social Media? <br>If Interested.<br><br>Play the Video Below to Learn About Our Workflow Setup!</h1>
+<h1 style="text-align: center; margin-top: 5px; margin-bottom: 30px;" id="pop-title" class="pop-headline">Want to Learn How You Can Generate Income from Your Social Media Account? If Interested.<br><br>Play the Video Below to Learn About Our Workflow Setup!</h1>
 
 <div class="funnel-media-wrap">
             <iframe src="https://www.youtube.com/embed/THyZjG_I9i8" title="Workflow Automation Node Pipeline Demo" spellcheck="false"></iframe>
@@ -224,3 +294,194 @@
   </div>
 
 </div>
+</body>
+
+<script>
+    (function () {
+  const canvas = document.getElementById('interlinkNodeCanvas');
+  const ctx = canvas.getContext('2d');
+
+  // ─── Constants ────────────────────────────────────────────────────────────
+  const MAX_CONN_DIST = 280;
+  const NEIGHBORS     = 3;
+  const NODE_RADIUS   = 3;
+  const MAX_PACKETS   = 120;
+  const INJECT_RATE   = 0.06;   // probability per frame of a random new packet
+  const PULSE_DECAY   = 0.04;   // how fast the arrival-pulse ring fades
+
+  let width, height, animId;
+  let nodes   = [];
+  let packets = [];
+
+  // ─── 1. Responsive sizing ─────────────────────────────────────────────────
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    width  = canvas.width  = rect.width  || window.innerWidth;
+    height = canvas.height = canvas.clientHeight || 500;
+
+    cancelAnimationFrame(animId);
+    initNetwork();
+    animate();
+  }
+
+  window.addEventListener('resize', resize);
+
+  // ─── 2. Network initialisation ────────────────────────────────────────────
+  function initNetwork() {
+    nodes   = [];
+    packets = [];
+
+    const count = Math.max(20, Math.floor((width * height) / 16000));
+
+    // Place nodes
+    for (let i = 0; i < count; i++) {
+      nodes.push({
+        x:     Math.random() * width,
+        y:     Math.random() * height,
+        connections: [],
+        pulse: 0,
+      });
+    }
+
+    // Wire bidirectional edges (deduplicated)
+    nodes.forEach(node => {
+      const sorted = nodes
+        .filter(n => n !== node)
+        .map(n => ({ n, d: Math.hypot(n.x - node.x, n.y - node.y) }))
+        .sort((a, b) => a.d - b.d);
+
+      for (let i = 0; i < NEIGHBORS; i++) {
+        if (!sorted[i] || sorted[i].d >= MAX_CONN_DIST) continue;
+        const neighbor = sorted[i].n;
+        if (!node.connections.includes(neighbor)) node.connections.push(neighbor);
+        if (!neighbor.connections.includes(node))  neighbor.connections.push(node);
+      }
+    });
+
+    // Seed initial traffic
+    const seed = Math.min(count, Math.floor(MAX_PACKETS * 0.6));
+    for (let i = 0; i < seed; i++) spawnPacket();
+  }
+
+  // ─── 3. Packet class ──────────────────────────────────────────────────────
+  function packetColor(speed) {
+    // Slow traffic → teal  |  Fast traffic → amber
+    return speed < 0.004 ? '#14b8a6' : '#f59e0b';
+  }
+
+  class Packet {
+    constructor(start, end) {
+      this.start    = start;
+      this.end      = end;
+      this.progress = 0;
+      this.speed    = 0.002 + Math.random() * 0.005;
+      this.color    = packetColor(this.speed);
+      this.radius   = this.speed > 0.005 ? 2 : 2.5;
+    }
+
+    draw() {
+      const x = this.start.x + (this.end.x - this.start.x) * this.progress;
+      const y = this.start.y + (this.end.y - this.start.y) * this.progress;
+      ctx.beginPath();
+      ctx.arc(x, y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    /** Returns true when the packet has reached its destination. */
+    update() {
+      this.progress += this.speed;
+      if (this.progress >= 1) {
+        this.end.pulse = 1;   // trigger arrival pulse on destination node
+        return true;
+      }
+      return false;
+    }
+  }
+
+  // ─── 4. Packet spawning ───────────────────────────────────────────────────
+  function spawnPacket(startNode) {
+    if (packets.length >= MAX_PACKETS) return;
+
+    const start = startNode || nodes[Math.floor(Math.random() * nodes.length)];
+    if (!start || start.connections.length === 0) return;
+
+    const end = start.connections[Math.floor(Math.random() * start.connections.length)];
+    packets.push(new Packet(start, end));
+  }
+
+  // ─── 5. Draw helpers ──────────────────────────────────────────────────────
+  function drawConnections() {
+    const seen = new Set();
+
+    nodes.forEach((node, ni) => {
+      node.connections.forEach(conn => {
+        const ci  = nodes.indexOf(conn);
+        const key = ni < ci ? `${ni}-${ci}` : `${ci}-${ni}`;
+        if (seen.has(key)) return;
+        seen.add(key);
+
+        ctx.beginPath();
+        ctx.moveTo(node.x, node.y);
+        ctx.lineTo(conn.x, conn.y);
+        ctx.stroke();
+      });
+    });
+  }
+
+  function drawNodes() {
+    nodes.forEach(node => {
+      // Arrival pulse ring
+      if (node.pulse > 0) {
+        const r = NODE_RADIUS + (1 - node.pulse) * 8;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(20, 184, 166, ${node.pulse * 0.5})`;
+        ctx.lineWidth   = 1;
+        ctx.stroke();
+        node.pulse = Math.max(0, node.pulse - PULSE_DECAY);
+      }
+
+      // Node core
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, NODE_RADIUS, 0, Math.PI * 2);
+      ctx.fillStyle = node.pulse > 0 ? '#14b8a6' : '#334155';
+      ctx.fill();
+    });
+  }
+
+  // ─── 6. Render loop ───────────────────────────────────────────────────────
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    // Infrastructure lines
+    ctx.lineWidth   = 0.8;
+    ctx.strokeStyle = 'rgba(51, 65, 85, 0.35)';
+    drawConnections();
+
+    // Nodes (resets lineWidth for pulse rings internally)
+    drawNodes();
+
+    // Packets — iterate backwards so splice doesn't skip entries
+    for (let i = packets.length - 1; i >= 0; i--) {
+      const p = packets[i];
+      p.draw();
+      if (p.update()) {
+        spawnPacket(p.end);   // chain: route immediately to the next hop
+        packets.splice(i, 1);
+      }
+    }
+
+    // Random traffic injection to keep density stable
+    if (Math.random() < INJECT_RATE) spawnPacket();
+
+    animId = requestAnimationFrame(animate);
+  }
+
+  // ─── Boot ─────────────────────────────────────────────────────────────────
+  resize();
+})();
+  </script>
+  
+</body>
+</html>
