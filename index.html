@@ -1,20 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI Automation Setup Guidebook | MicroBurstMedia</title>
+
 <style>
   /* Import a clean, modern sans-serif font similar to your design */
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-  /* 1. MASTER CONTAINER */
-  .mbm-native-card {
-    max-width: 400px;
-    margin: 2rem auto;
-    background: linear-gradient(145deg, #0b101e, #05070a);
-    border: 1px solid #1e293b;
-    border-radius: 24px;
-    padding: 2.5rem 2rem 1.5rem 2rem; /* Adjusted bottom padding to balance the footer */
-    font-family: 'Inter', sans-serif;
-    text-align: center;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
-    color: #ffffff;
-  }
+  /* GLOBAL BODY OVERRIDE: Eliminates the loose white background and centers the app container */
+    body {
+      margin: 0;
+      padding: 1rem;
+      background-color: #05070a; /* Matches your design's deep midnight theme exactly */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* 1. MASTER CONTAINER */
+    .mbm-native-card {
+      width: 100%;             /* Fits perfectly inside mobile borders */
+      max-width: 400px;        /* Restricts stretching out on desktop screens */
+      box-sizing: border-box;
+      background: linear-gradient(145deg, #0b101e, #05070a);
+      border: 1px solid #1e293b;
+      border-radius: 24px;
+      padding: 2.5rem 2rem 1.5rem 2rem;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+      color: #ffffff;
+    }
 
   /* 2. RESPONSIVE TOP GRAPHIC CONTAINER */
   /* Swaps hardcoded pixels for proportional scaling so it expands beautifully on mobile */
