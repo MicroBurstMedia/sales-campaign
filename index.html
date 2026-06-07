@@ -1,63 +1,188 @@
 <style>
-  /* 1. WRAPPER CONTAINER */
-  /* Constrains the vertical video so it doesn't scale massively on wide desktop screens */
-  .automation-guide-wrapper {
-    max-width: 400px; 
+  /* Import a clean, modern sans-serif font similar to your design */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+  /* 1. MASTER CONTAINER */
+  .mbm-native-card {
+    max-width: 400px;
     margin: 2rem auto;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  /* 2. VIDEO EMBED FRAME */
-  .canva-embed-container {
-    position: relative;
-    width: 100%;
-    padding-top: 177.77%; /* Maintains the exact 9:16 Vertical Aspect Ratio */
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2); 
-    background-color: #0f172a; /* Clean dark backdrop while the iframe loads */
-    will-change: transform;
-  }
-
-  .canva-embed-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  /* 3. CAPTION & HYPERLINK STYLING */
-  .guide-link {
-    display: block;
+    background: linear-gradient(145deg, #0b101e, #05070a);
+    border: 1px solid #1e293b;
+    border-radius: 24px;
+    padding: 2.5rem 2rem 1.5rem 2rem; /* Adjusted bottom padding to balance the footer */
+    font-family: 'Inter', sans-serif;
     text-align: center;
-    margin-top: 1.2rem;
-    font-size: 0.85rem;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+    color: #ffffff;
+  }
+
+  /* 2. RESPONSIVE TOP GRAPHIC CONTAINER */
+  /* Swaps hardcoded pixels for proportional scaling so it expands beautifully on mobile */
+  .mbm-graphic-area {
+    width: 100%;
+    height: auto;               /* Allows the container height to scale with the image */
+    min-height: 220px;          /* Sets a firm baseline height for smaller devices */
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;      /* Generous breathing room before hitting the text content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  }
+  
+  .mbm-graphic-area img {
+    width: 85%;                 /* Expands the graphic to occupy a dominant view zone */
+    max-width: 320px;           /* Caps it elegantly so it stays sharp on desktop layouts */
+    height: auto;               /* Maintains the perfect native design proportions */
+    object-fit: contain;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4)); /* Adds a deep 3D float effect */
+  }
+
+  /* 3. TYPOGRAPHY & BRANDING */
+  .mbm-brand-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .mbm-headline {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .mbm-subtext {
+    font-size: 1rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .mbm-price-tag {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #f8fafc;
+  }
+
+  /* 4. INTERACTIVE BUTTONS WITH CONTROLLED NATIVE SPACING */
+  .mbm-btn-primary {
+    display: inline-flex; /* Changed from flex to inline-flex so it wraps the text naturally */
+    align-items: center;
+    justify-content: center;
+    
+    /* Standard balanced button padding */
+    padding: 0.85rem 2rem; 
+    
+    /* Prevents the button from stretching too wide on larger displays */
+    width: 100%;
+    max-width: 280px; 
+    margin: 0 auto 1.25rem auto; /* Centers the button horizontally */
+    
+    background: #10b981; /* High-velocity green */
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .mbm-btn-primary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+  }
+
+  .mbm-btn-secondary {
+    display: inline-flex; /* Changed from flex to inline-flex */
+    align-items: center;
+    justify-content: center;
+    
+    /* Matches primary button dimensions exactly for design symmetry */
+    padding: 0.85rem 2rem; 
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto 2.5rem auto; /* Centers the button and keeps the gap before the footer */
+    
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    transition: all 0.2s ease;
+  }
+
+  .mbm-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #475569;
+  }
+
+  /* 5. TRANSPARENT POLICY FOOTER */
+  .mbm-footer-policy {
+    font-size: 0.7rem;
+    line-height: 1.4;
+    color: #475569; /* Muted slate gray to stay low-profile and non-distracting */
+    border-top: 1px solid rgba(51, 65, 85, 0.4);
+    padding-top: 1rem;
+    letter-spacing: 0.2px;
+  }
+
+  .mbm-footer-policy a {
     color: #64748b;
     text-decoration: none;
-    letter-spacing: 0.5px;
     transition: color 0.2s ease;
   }
 
-  .guide-link:hover {
-    color: #3b82f6; /* Illuminates blue on mouse hover */
-  }
-
-  .guide-brand {
-    font-weight: 600;
-    color: #94a3b8;
+  .mbm-footer-policy a:hover {
+    color: #3b82f6; /* Subtle accent highlight on text links */
+    text-decoration: underline;
   }
 </style>
 
-<div class="automation-guide-wrapper">
+<div class="mbm-native-card">
+
+<h1 style="text-align: center; margin-top: 5px; margin-bottom: 30px;" id="pop-title" class="pop-headline">Want to Learn How You Can Generate Income from Your Social Media? <br>If Interested.<br><br>Play the Video Below to Learn About Our Workflow Setup!</h1>
+
+<div class="funnel-media-wrap">
+            <video id="pop-video" controls loop playsinline style="display: block; width: 100%;">
+                <source id="pop-video-src" src="https://www.dropbox.com/scl/fi/380zbz8qxdkmqm8mrrjfu/Interlink-Automation-Node-Pipeline-System.mp4?rlkey=ykvejoy1el3c746xmo9l0ccsf&st=1sokvg8b&dl=0&amp;st=41aoh3a1&amp;raw=1" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+  <div class="mbm-brand-label">This Information Was Brought to You By Digital Marketing Network, MicroBurstMedia</div>
   
-  <div class="canva-embed-container">
-    <iframe loading="lazy" src="https://www.canva.com/design/DAGn5cEqW_I/DitgJmnsdURNZK1NLWi8Lg/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+  <h1 class="mbm-headline">AI Automation<br>Setup Guidebook</h1>
+  
+  <p class="mbm-subtext">Learn How we Build AI Automated Entry-Level Web Systems Powered by AI Software for Our Business Processes Online. Grab Your Copy Today!
+  
+  <div class="mbm-price-tag">$29.99 <strong style="color:#fa003f">($3.00)</strong> USD <br><span class="old-price">Use Code: <strong style="color:#eec242">OFF90</strong></span></div>
+  
+  <div class="mbm-graphic-area">
+    <img src="https://64.media.tumblr.com/daff6af88103ff4f95e3e1d315dd341b/e83dd90c84254906-31/s1280x1920/2bfc738be757ef3c42adb6f414b10db6760a0969.gifv" alt="MicroBurstMedia Engine Graphic">
   </div>
 
-  <a class="guide-link" href="https://www.canva.com/design/DAGn5cEqW_I/DitgJmnsdURNZK1NLWi8Lg/watch?utm_content=DAGn5cEqW_I&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">
-    <span class="guide-brand">MicroBurstMedia</span> | Automation Setup Guide for Beginners
+  <a href="https://buy.stripe.com/5kAbL1eJ90rbgAU9Bb" target="_blank" class="mbm-btn-primary">
+    Get Instant Access
   </a>
+
+  <a href="https://microburstmedia.github.io/digital-marketing-network" target="_blank" class="mbm-btn-secondary">
+    Request Free Guide
+  </a>
+
+  <div class="mbm-footer-policy">
+    Digital access is delivered instantly post-checkout. By proceeding, you agree to our <a href="https://microburstmedia.github.io/digital-marketing-network">Terms of Service</a> &amp; <a href="https://microburstmedia.github.io/digital-marketing-network">Privacy Policy</a>. Secure 256-bit SSL encrypted transaction.<br><br>
+    &copy; 2026 MicroBurstMedia. All rights reserved.
+  </div>
 
 </div>
