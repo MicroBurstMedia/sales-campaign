@@ -91,61 +91,59 @@
     color: #f8fafc;
   }
 
-  /* 4. INTERACTIVE BUTTONS WITH CONTROLLED NATIVE SPACING */
-  .mbm-btn-primary {
-    display: inline-flex; /* Changed from flex to inline-flex so it wraps the text naturally */
-    align-items: center;
-    justify-content: center;
-    
-    /* Standard balanced button padding */
-    padding: 0.85rem 2rem; 
-    
-    /* Prevents the button from stretching too wide on larger displays */
-    width: 100%;
-    max-width: 280px; 
-    margin: 0 auto 1.25rem auto; /* Centers the button horizontally */
-    
-    background: #10b981; /* High-velocity green */
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 1.05rem;
-    text-decoration: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-    transition: all 0.2s ease;
-  }
+  /* 4. INTERACTIVE BUTTONS WITH CONTROLLED SPACING */
+    .mbm-btn-primary {
+      display: flex;             /* Keeps the interior layout solid */
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 2rem; 
+      
+      /* THE CAP LOCK FIX: Removes width: 100% and explicitly sizes the element capsule */
+      width: 280px;              
+      margin: 0 auto 1.25rem auto; /* Automatically balances the button exactly in the center */
+      
+      background: #10b981; 
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
 
-  .mbm-btn-primary:hover {
-    background: #059669;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
-  }
+    .mbm-btn-primary:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+    }
 
-  .mbm-btn-secondary {
-    display: inline-flex; /* Changed from flex to inline-flex */
-    align-items: center;
-    justify-content: center;
-    
-    /* Matches primary button dimensions exactly for design symmetry */
-    padding: 0.85rem 2rem; 
-    width: 100%;
-    max-width: 280px;
-    margin: 0 auto 2.5rem auto; /* Centers the button and keeps the gap before the footer */
-    
-    background: transparent;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    border-radius: 12px;
-    border: 1px solid #334155;
-    transition: all 0.2s ease;
-  }
+    .mbm-btn-secondary {
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 2rem; 
+      
+      /* THE CAP LOCK FIX: Matches primary button geometry perfectly */
+      width: 280px;
+      margin: 0 auto 2.5rem auto; 
+      
+      background: transparent;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
 
-  .mbm-btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: #475569;
-  }
+    .mbm-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #475569;
+    }
 
   /* 5. TRANSPARENT POLICY FOOTER */
   .mbm-footer-policy {
@@ -174,10 +172,7 @@
 <h1 style="text-align: center; margin-top: 5px; margin-bottom: 30px;" id="pop-title" class="pop-headline">Want to Learn How You Can Generate Income from Your Social Media? <br>If Interested.<br><br>Play the Video Below to Learn About Our Workflow Setup!</h1>
 
 <div class="funnel-media-wrap">
-            <video id="pop-video" controls loop playsinline style="display: block; width: 100%;">
-                <source id="pop-video-src" src="https://www.dropbox.com/scl/fi/380zbz8qxdkmqm8mrrjfu/Interlink-Automation-Node-Pipeline-System.mp4?rlkey=ykvejoy1el3c746xmo9l0ccsf&st=1sokvg8b&dl=0&amp;st=41aoh3a1&amp;raw=1" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <iframe src="https://www.youtube.com/embed/THyZjG_I9i8" title="Workflow Automation Node Pipeline Demo" spellcheck="false"></iframe>
         </div>
 
   <div class="mbm-brand-label">This Information Was Brought to You By Digital Marketing Network, MicroBurstMedia</div>
