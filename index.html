@@ -111,27 +111,52 @@
 
     /* 3. FLUID YOUTUBE ENGINE WRAPPER */
     .funnel-media-wrap {
-      position: relative;
-      width: 100%;
-      height: auto;               
-      max-height: 240px;          
-      margin-bottom: 2rem;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      background-color: #05070a;  
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .funnel-media-wrap iframe {
-      position: relative;         
-      width: 100%;
-      height: 240px;              
-      max-height: 240px;
-      border: none;
-    }
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 8px;
+    background: linear-gradient(
+        180deg,
+        rgba(20,27,42,.85),
+        rgba(8,12,20,.95)
+    );
+
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow:
+    0 0 0 1px rgba(120,170,255,.10),
+    0 18px 45px rgba(0,0,0,.45),
+    0 0 40px rgba(79,140,255,.18);
+    transition:
+        width .35s ease,
+        height .35s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+.funnel-media-wrap:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+}
+
+.funnel-media-wrap video{
+    display:block;
+    max-width:100%;
+    max-height:80vh;
+    width:auto;
+    height:auto;
+    border-radius:12px;
+    object-fit:contain;
+
+}
 
     /* 4. DESIGN ELEMENT GRAPHIC CONTAINER */
     .mbm-graphic-area {
@@ -276,13 +301,10 @@
 <h1 style="text-align: center; margin-top: 30px; margin-bottom: 30px;" id="pop-title" class="pop-headline">Want to Learn How You Can Generate Income from Your Social Media Account? Play the Video to Learn About Our Workflow Setup!</h1>
 
 <div class="funnel-media-wrap">
-      <iframe 
-        src="https://www.youtube.com/embed/gx0gtjt_Gq4" 
-        title="Workflow Automation System Design Presentation"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowfullscreen="true">
-      </iframe>
-    </div>
+    <video controls>
+        <source src="https://www.dropbox.com/scl/fi/44a80oeybpf3f9j09jhe4/Interlink-Video-Reel-Campaign.mp4?rlkey=mptwk5gzuwogxgsig1noe5b1w&st=25ieoq7w&dl=0&st=41aoh3a1&raw=1" type="video/mp4">
+    </video>
+</div>
     
     <div class="mbm-brand-label">Transform Your Social Media Into an Online Payment Pipeline by Learning this Entry-Level Workflow Setup!</div>
     
@@ -549,6 +571,33 @@
   resize();
 })();
   </script>
+  
+  <script>
+/* Adaptive Video Engine */
+document.addEventListener("DOMContentLoaded", () => {
+
+    const wrappers = document.querySelectorAll(".funnel-media-wrap");
+
+    wrappers.forEach(wrapper => {
+
+        const video = wrapper.querySelector("video");
+
+        if (video) {
+
+            video.addEventListener("loadedmetadata", () => {
+
+                const ratio = video.videoWidth / video.videoHeight;
+
+                wrapper.style.aspectRatio = ratio;
+
+            });
+
+        }
+
+    });
+
+});
+</script>
   
 </body>
 </html>
